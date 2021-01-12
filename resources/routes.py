@@ -1,6 +1,6 @@
 from .patient import PatientsApi, PatientApi
 from .hospital import HospitalsApi, HospitalApi
-from .admin import AdminApi, AdminsApi
+from .admin import AdminApi, AdminsApi, AdminAppointmentsApi, AdminAppointmentApi
 from .appointment import AppointmentsApi
 
 from .auth import SignupApi, LoginApi
@@ -22,6 +22,8 @@ def initialize_routes(api):
     api.add_resource(AdminsApi, '/api/admin/<id>')
 
     api.add_resource(AppointmentsApi, '/api/appointments')
+    api.add_resource(AdminAppointmentsApi, '/api/adminappointments/')
+    api.add_resource(AdminAppointmentApi, '/api/adminappointment/<id>')
 
     api.add_resource(SignupApi, '/api/auth/signup')
     api.add_resource(LoginApi, '/api/auth/login')
