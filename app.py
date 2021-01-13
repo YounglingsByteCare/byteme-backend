@@ -8,11 +8,9 @@ from flask_restful import Api
 from resources.errors import errors
 
 
-
 application = app = Flask(__name__)
-app.config.from_envvar('ENV_FILE_LOCATION')
+app.config.from_pyfile('settings.py')
 mail = Mail(app)
-
 # imports requiring app and mail
 from resources.routes import initialize_routes
 

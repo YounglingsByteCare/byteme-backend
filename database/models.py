@@ -60,7 +60,7 @@ class User(db.Document):
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
     patients = db.ListField(db.ReferenceField('Patient', reverse_delete_rule=db.PULL))
-    #hospitals = db.ListField(db.ReferenceField('Hospital', reverse_delete_rule=db.PULL))
+    appointments = db.ListField(db.ReferenceField('Appointment', reverse_delete_rule=db.PULL))
 
 
     def hash_password(self):
