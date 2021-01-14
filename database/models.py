@@ -39,19 +39,20 @@ class Patient(db.Document):
 
 
 
-class Hospital(db.EmbeddedDocument):
+class Hospital(db.Document):
     hospital_name = db.StringField(required=True)
     hospital_address = db.StringField(required=True)
-    #added_by = db.ReferenceField('User')
+    added_by = db.ReferenceField('AdminSignUp')
 
 class Appointment(db.Document):
     patient_selected = db.ReferenceField('Patient')
-    hospital = db.EmbeddedDocumentField(Hospital)
+    hospital_selected = db.ReferenceField("Hospital")
     appointment_date = db.DateTimeField(format="%Y-%m-%dT%H:%M", required = True, unique = True)
     #appointment_time = db.DateTimeField(format="%H:%M", required = True, unique = True)
     ward_type = db.StringField(required = True)
     reason_for_visit = db.StringField(required = True)
     added_by = db.ReferenceField('User')
+    #completed = db.BooleanField()
 
 
 
@@ -70,7 +71,6 @@ class User(db.Document):
         return check_password_hash(self.password, password)
 
 User.register_delete_rule(Patient, 'added_by', db.CASCADE)
-#User.register_delete_rule(Hospital, 'added_by', db.CASCADE)
 User.register_delete_rule(Appointment, 'added_by', db.CASCADE)
 
 #admin side models
@@ -89,6 +89,7 @@ class AdminSignUp(db.Document):
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
     admin = db.ListField(db.ReferenceField('Admin', reverse_delete_rule=db.PULL))
+    hospital = db.ListField(db.ReferenceField('Hospital', reverse_delete_rule=db.PULL))
 
     def hash_password(self):
         self.password = generate_password_hash(self.password).decode('utf8')
@@ -99,3 +100,4 @@ class AdminSignUp(db.Document):
 
 #if a user is deleted then the movie created by the user is also deleted.
 AdminSignUp.register_delete_rule(Admin, 'added_by', db.CASCADE)
+AdminSignUp.register_delete_rule(Hospital, 'added_by', db.CASCADE)

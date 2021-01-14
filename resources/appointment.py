@@ -9,7 +9,9 @@ from resources.errors import SchemaValidationError, ItemAlreadyExistsError, \
 InternalServerError, UpdatingItemError, DeletingItemError, ItemNotExistsError
 
 class AppointmentsApi(Resource):
+    @jwt_required
     def get(self):
+        user_id = get_jwt_identity()
         appointment = Appointment.objects().to_json()
         return Response(appointment, mimetype="application/json", status=200)
 
@@ -28,4 +30,29 @@ class AppointmentsApi(Resource):
         except NotUniqueError:
             raise ItemAlreadyExistsError
         except Exception as e:
+            raise InternalServerError
+
+class AppointmentApi(Resource):
+
+    @jwt_required
+    def delete(self, id):
+        try:
+            user_id = get_jwt_identity()
+            appointment = Appointment.objects.get(id=id, added_by=user_id)
+            appointment.delete()
+            return '', 200
+        except DoesNotExist:
+            raise DeletingItemError
+        except Exception:
+            raise InternalServerError
+
+    @jwt_required
+    def get(self, id):
+        try:
+            user_id = get_jwt_identity()
+            appointments = Appointment.objects.get(id=id, added_by=user_id).to_json()
+            return Response(appointments, mimetype="application/json", status=200)
+        except DoesNotExist:
+            raise ItemNotExistsError
+        except Exception:
             raise InternalServerError
