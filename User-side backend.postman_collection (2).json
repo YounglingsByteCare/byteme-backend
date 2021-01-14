@@ -83,7 +83,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Adam\",\r\n    \"surname\":\"Banderker\",\r\n    \"gender\":\"Male\",\r\n    \"id_number\":\"9608065238080\",\r\n    \"address\": {\r\n        \"street_name\":\"Middel Road\",\r\n        \"house_number\":3,\r\n        \"city\":\"Cape town\",\r\n        \"country\":\"South africa\",\r\n        \"postal_code\": \"7764\"\r\n    },\r\n    \"phone\": \"067-088-1382\",\r\n    \"primary\": \"True\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Nadine\",\r\n    \"surname\":\"Truter\",\r\n    \"gender\":\"Female\",\r\n    \"id_number\":\"9608065238080\",\r\n    \"address\": {\r\n        \"street_name\":\"Middel Road\",\r\n        \"house_number\":3,\r\n        \"city\":\"Cape town\",\r\n        \"country\":\"South africa\",\r\n        \"postal_code\": \"7764\"\r\n    },\r\n    \"phone\": \"067-088-1382\",\r\n    \"primary\": \"True\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -193,6 +193,16 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -214,7 +224,41 @@
 					"response": []
 				},
 				{
-					"name": "/admin/appointments",
+					"name": "/appointment/<id>",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/appointment/60000ae65468b481d0e7ad22",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"appointment",
+								"60000ae65468b481d0e7ad22"
+							]
+						},
+						"description": "get all patients "
+					},
+					"response": []
+				},
+				{
+					"name": "/appointment/<id>",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -236,47 +280,14 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{url}}/api/adminappointments",
+							"raw": "{{url}}/api/appointment/60000ae65468b481d0e7ad22",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"adminappointments"
-							]
-						},
-						"description": "get all patients "
-					},
-					"response": []
-				},
-				{
-					"name": "/admin/appointment/<id>",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{jwt_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/api/adminappointment/5ffd8cbd3b7f4327c858c216",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"api",
-								"adminappointment",
-								"5ffd8cbd3b7f4327c858c216"
+								"appointment",
+								"60000ae65468b481d0e7ad22"
 							]
 						},
 						"description": "get all patients "
@@ -300,7 +311,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"patient_selected\":\"9608065238080\",\r\n    \"hospital\":{\r\n        \"hospital_name\": \"Groote Schuur\",\r\n        \"hospital_address\": \"232 middel weg woodstock\"\r\n    },\r\n    \"appointment_date\": \"2021-08-07 14:00\",\r\n    \"ward_type\": \"General\",\r\n    \"reason_for_visit\":\"Stomach bug\"\r\n}    ",
+							"raw": "{\r\n    \"patient_selected\":\"9608065238080\",\r\n    \"hospital_selected\":\"600070c6c3c4f3d5a33c8cc1\",\r\n    \"appointment_date\": \"2021-08-07 16:30\",\r\n    \"ward_type\": \"General\",\r\n    \"reason_for_visit\":\"Stomach bug\"\r\n}    ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -324,6 +335,29 @@
 			]
 		},
 		{
+			"name": "Hospital information",
+			"item": [
+				{
+					"name": "/api/hospitalsinfo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hospitalsinfo",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hospitalsinfo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "User Auth",
 			"item": [
 				{
@@ -333,7 +367,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"Bashbanderker50@gmail.com\",\r\n    \"password\":\"asdfg123\"\r\n}",
+							"raw": "{\r\n    \"email\":\"adambanderker50@gmail.com\",\r\n    \"password\":\"asdfg123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -376,7 +410,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"Bashbanderker50@gmail.com\",\r\n    \"password\":\"asdfg123\"\r\n}",
+							"raw": "{\r\n    \"email\":\"adambanderker50@gmail.com\",\r\n    \"password\":\"asdfg123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -405,7 +439,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"Bashbanderker50@gmail.com\"\r\n}",
+							"raw": "{\r\n    \"email\":\"bashier.banderker@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -597,7 +631,7 @@
 			]
 		},
 		{
-			"name": "Admin",
+			"name": "Admin information",
 			"item": [
 				{
 					"name": "/api/admin",
@@ -615,13 +649,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/api/admin",
+							"raw": "{{url}}/api/admins",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"admin"
+								"admins"
 							]
 						}
 					},
@@ -644,7 +678,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Adam\",\r\n    \"surname\":\"Banderker\",\r\n    \"gender\":\"Male\",\r\n    \"id_number\":\"2141243124321\",\r\n    \"address\":\"9 Middel\",\r\n    \"city\":\"Cape town\",\r\n    \"country\":\"South Africa\",\r\n    \"postal_code\":\"7764\",\r\n    \"phone_number\":\"213124311\",\r\n    \"primary\":\"True\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Adam\",\r\n    \"surname\":\"Banderker\",\r\n    \"gender\":\"Male\",\r\n    \"id_number\":\"9608065238080\",\r\n    \"address\": {\r\n        \"street_name\":\"Middel Road\",\r\n        \"house_number\":3,\r\n        \"city\":\"Cape town\",\r\n        \"country\":\"South africa\",\r\n        \"postal_code\": \"7764\"\r\n    },\r\n    \"phone\": \"067-088-1382\",\r\n    \"primary\": \"True\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -652,13 +686,253 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/admin",
+							"raw": "{{url}}/api/admins",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"api",
-								"admin"
+								"admins"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Appointments",
+			"item": [
+				{
+					"name": "/admin/appointments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/adminappointments",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"adminappointments"
+							]
+						},
+						"description": "get all patients "
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Hospital",
+			"item": [
+				{
+					"name": "/api/hospitals",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token1}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hospital_name\":\"Groote Schuur\",\r\n    \"hospital_address\": \"53 Middel Weg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/hospitals",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hospitals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/hospitals",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token1}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/hospitals",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hospitals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/hospital/<id>",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token1}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hospital_name\":\"Groote Schuur1\",\r\n    \"hospital_address\": \"53 Middel Weg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/hospital/600070c6c3c4f3d5a33c8cc1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hospital",
+								"600070c6c3c4f3d5a33c8cc1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/hospital/<id>",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token1}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/hospital/60007100be6a8af77e500e74",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hospital",
+								"60007100be6a8af77e500e74"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/hospital/<id>",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token1}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/hospital/600070c6c3c4f3d5a33c8cc1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hospital",
+								"600070c6c3c4f3d5a33c8cc1"
 							]
 						}
 					},
