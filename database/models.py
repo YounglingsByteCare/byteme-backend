@@ -41,7 +41,7 @@ class Patient(db.Document):
 
 class Hospital(db.Document):
     hospital_name = db.StringField(required=True)
-    hospital_address = db.StringField(required=True)
+    point = db.GeoPointField(required=True)
     added_by = db.ReferenceField('AdminSignUp')
 
 class Appointment(db.Document):
