@@ -1,5 +1,7 @@
-from flask import Response, request
-from database.models import Appointment, User
+import sys
+import json
+from flask import Response, request, jsonify
+from database.models import Appointment, User, Patient
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_restful import Resource
 
@@ -12,8 +14,18 @@ class AppointmentsApi(Resource):
     @jwt_required
     def get(self):
         user_id = get_jwt_identity()
-        appointment = Appointment.objects().to_json()
-        return Response(appointment, mimetype="application/json", status=200)
+
+        patients = User.objects.get(id=user_id).patients
+        data = []
+
+        for p in patients:
+            ap = Appointment.objects.get(patient_selected = p.id)
+            if ap:
+                data.append(ap.to_json())
+
+
+        return jsonify(data)
+        # return Response(data, mimetype="application/json", status=200)
 
     @jwt_required
     def post(self):

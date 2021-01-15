@@ -28,7 +28,7 @@ class Patient(db.Document):
     name = db.StringField(required=True)
     surname = db.StringField(required=True)
     gender = db.StringField(required= True)
-    id_number = db.StringField(required = True,min_length=13, unique = True)
+    id_number = db.StringField(required = True,min_length=13, primary_key=True)
     address = db.EmbeddedDocumentField(Address)
     phone = PhoneField()
     primary = db.BooleanField(required = False)
