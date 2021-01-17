@@ -51,6 +51,7 @@ class Appointment(db.Document):
     #appointment_time = db.DateTimeField(format="%H:%M", required = True, unique = True)
     ward_type = db.StringField(required = True)
     reason_for_visit = db.StringField(required = True)
+    completed = db.BooleanField(required = False, default = False)
     added_by = db.ReferenceField('User')
     #completed = db.BooleanField()
 

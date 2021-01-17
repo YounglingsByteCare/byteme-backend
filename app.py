@@ -18,6 +18,8 @@ app.config["MAIL_PASSWORD"] = "teambytecare0"
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False
 app.config["MAIL_DEFAULT_SENDER"]="bytecare0@gmail.com"
+#app.url_map.strict_slashes = False
+
 
 mail = Mail(app)
 # imports requiring app and mail
