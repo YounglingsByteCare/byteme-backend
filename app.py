@@ -28,7 +28,7 @@ bot = ChatBot("ByteBot")
 trainer =  ChatterBotCorpusTrainer(bot)
 # trainer.train({'What is your name?':'My name is Candice'})
 #trainer.train("chatterbot.corpus.english")
-trainer.train("data/greetings.yml")
+#trainer.train("data/greetings.yml")
 trainer.train("data/data.yml")
 
 @app.route("/chatbot")
