@@ -1,4 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template, request
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
@@ -20,6 +22,22 @@ app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False
 app.config["MAIL_DEFAULT_SENDER"]="bytecare0@gmail.com"
 #app.url_map.strict_slashes = False
+
+bot = ChatBot("ByteBot")
+
+trainer =  ChatterBotCorpusTrainer(bot)
+# trainer.train({'What is your name?':'My name is Candice'})
+#trainer.train("chatterbot.corpus.english")
+trainer.train("data/greetings.yml")
+trainer.train("data/data.yml")
+
+@app.route("/chatbot")
+def home():
+    return render_template("home.html")
+@app.route("/get")
+def get_bot_response():
+    userText = request.args.get('msg')
+    return str(bot.get_response(userText))
 
 
 mail = Mail(app)
