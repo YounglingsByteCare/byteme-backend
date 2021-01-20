@@ -4,6 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask_mail import Mail, Message
 from resources.forms import ContactForm
 
+
 from database.db import initialize_db
 from flask_restful import Api
 from resources.errors import errors
@@ -47,6 +48,7 @@ def contact():
     """ % (form.name.data, form.email.data, form.message.data)
     mail.send(msg)
     return 'Form posted.'
+
 
 initialize_db(app)
 initialize_routes(api)
