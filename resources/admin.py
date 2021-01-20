@@ -7,7 +7,7 @@ from resources.errors import SchemaValidationError, ItemAlreadyExistsError, Inte
 
 
 #these classes are created so that the admin can update/delete/send data to their profile
-class AdminApi(Resource):
+class AdminsApi(Resource):
   #get objects
   #convert them to json
   #return response object
@@ -44,7 +44,7 @@ class AdminApi(Resource):
 
 
 
-class AdminsApi(Resource):
+class AdminApi(Resource):
   # updating an object
   # call the id of the object
   # use spread operator to pass the value to update funtion
