@@ -40,8 +40,8 @@ def initialize_routes(api):
     api.add_resource(ForgotAdminPassword, '/api/auth/admin/forgot')
     api.add_resource(ResetAdminPassword, '/api/auth/admin/reset')
 
-    api.add_resource(AdminApi, '/api/admins')
-    api.add_resource(AdminsApi, '/api/admin/<id>')
+    api.add_resource(AdminsApi, '/api/admins')
+    api.add_resource(AdminApi, '/api/admin/<id>')
 
     api.add_resource(AdminAppointmentsApi, '/api/adminappointments')
     api.add_resource(AdminAppointmentApi, '/api/adminappointment/<id>')
