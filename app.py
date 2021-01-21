@@ -40,7 +40,7 @@ app.config['MONGODB_SETTINGS'] = {
 @app.route('/contact', methods=['POST'])
 def contact():
     form = ContactForm()
-    msg = Message(form.subject.data, sender='contact@example.com', recipients=['bytecare0@gmail.com'])
+    msg = Message(form.subject.data, sender='contact@example.com', recipients=['bytecare01@gmail.com'])
     msg.body = """
     From: %s
     Email: <%s>
