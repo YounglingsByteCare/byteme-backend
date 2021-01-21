@@ -15,7 +15,7 @@ app.config.from_pyfile('settings.py')
 app.config["DEBUG"]= True
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
-app.config["MAIL_USERNAME"] = "byecare01@gmail.com"
+app.config["MAIL_USERNAME"] = "bytecare01@gmail.com"
 app.config["MAIL_PASSWORD"] = "Bytecare123"
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False

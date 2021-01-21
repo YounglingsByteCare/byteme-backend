@@ -22,7 +22,7 @@ class SignupApi(Resource):
             expires = datetime.timedelta(hours=24)
             access_token = create_access_token(str(id), expires_delta=expires)
             return send_email('Login verification',
-                              sender='bytecare0q@gmail.com',
+                              sender='bytecare01@gmail.com',
                               recipients=[user.email],
                               text_body=render_template('auth/login_email.txt',
                                                          url=url + access_token),
