@@ -1,3 +1,4 @@
+from .user import UserApi
 from .patient import PatientsApi, PatientApi
 from .admin import AdminApi, AdminsApi
 from .admin_appointments import AdminAppointmentsApi, AdminAppointmentApi
@@ -20,6 +21,8 @@ def initialize_routes(api):
 
     api.add_resource(ForgotPassword, '/api/auth/forgot')
     api.add_resource(ResetPassword, '/api/auth/reset')
+
+    api.add_resource(UserApi, '/api/user')
 
     api.add_resource(HospitalsInfoApi, '/api/hospitalsinfo')
 
