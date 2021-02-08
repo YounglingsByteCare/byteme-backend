@@ -19,9 +19,12 @@ class AppointmentsApi(Resource):
         data = []
 
         for p in patients:
-            ap = Appointment.objects.get(**{ "patient_selected" : p["id_number"] })
-            if ap:
-                data.append(ap)
+            try:
+                ap = Appointment.objects.get(**{ "patient_selected" : p["id_number"] })
+                if ap:
+                    data.append(ap)
+            except DoesNotExist:
+                pass
 
 
         return jsonify(data)
