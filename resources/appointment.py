@@ -56,6 +56,9 @@ class AppointmentApi(Resource):
         try:
             user_id = get_jwt_identity()
             appointment = Appointment.objects.get(id=id, added_by=user_id)
+            user = User.objects.get(id=user_id)
+            user.update(pull__appointments=appointment)
+            user.save()
             appointment.delete()
             return '', 200
         except DoesNotExist:
