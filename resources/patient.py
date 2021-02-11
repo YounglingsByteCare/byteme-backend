@@ -61,6 +61,9 @@ class PatientApi(Resource):
             user_id = get_jwt_identity()
             patient = Patient.objects.get(id=id, added_by=user_id)
             patient.delete()
+            user = User.objects.get(id=user_id)
+            user.update(unset__patient=patient)
+            user.save()
             return '', 200
         except DoesNotExist:
             raise DeletingItemError
