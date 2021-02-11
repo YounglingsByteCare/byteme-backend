@@ -6,7 +6,7 @@ from .hospital import HospitalsApi, HospitalApi
 from .hospital_information import HospitalsInfoApi
 from .appointment import AppointmentsApi, AppointmentApi
 
-from .auth import SignupApi, LoginApi, Confirm_Email
+from .auth import SignupApi, LoginApi, Confirm_Email, StatusApi
 from .admin_auth import SignupAdminApi,LoginAdminApi, Confirm_Admin_Email
 
 from .reset_password import ForgotPassword, ResetPassword, ForgotAdminPassword,ResetAdminPassword
@@ -48,3 +48,5 @@ def initialize_routes(api):
 
     api.add_resource(AdminAppointmentsApi, '/api/adminappointments')
     api.add_resource(AdminAppointmentApi, '/api/adminappointment/<id>')
+
+    api.add_resource(StatusApi, '/api/status')
