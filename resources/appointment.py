@@ -38,6 +38,8 @@ class AppointmentsApi(Resource):
             user = User.objects.get(id=user_id)
             appointment = Appointment(**body, added_by=user)
             appointment.save()
+            user.update(push__appointments=appointment)
+            user.save()
             id = appointment.id
             return {'id': str(id)}, 200
         except (FieldDoesNotExist, ValidationError):
