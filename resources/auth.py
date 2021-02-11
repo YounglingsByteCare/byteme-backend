@@ -72,3 +72,7 @@ class LoginApi(Resource):
             raise UnauthorizedError
         except Exception as e:
             raise InternalServerError
+
+class StatusApi(Resource):
+	def head(self):
+		return (), 200
