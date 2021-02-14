@@ -58,8 +58,10 @@ class Confirm_Admin_Email(Resource):
 #jwt extended used to create the access token thats valid for 7 days
 class LoginAdminApi(Resource):
     def options(self):
-        headers = request.headers
-        headers['Access-Control-Allow-Origin'] = '*'
+        headers = {
+            **request.headers,
+            'Access-Control-Allow-Origin': '*'
+        }
         return headers, 200
 
     def post(self):
