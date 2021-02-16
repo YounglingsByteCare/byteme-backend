@@ -1,3 +1,4 @@
+import sys
 from flask import Response, request, jsonify
 from database.models import Patient, User
 from flask_jwt_extended import jwt_required, get_jwt_identity
@@ -23,5 +24,5 @@ class UserApi(Resource):
         except DoesNotExist:
             raise ItemNotExistsError
         except Exception:
-	        raise InternalServerError
+            raise InternalServerError
 
