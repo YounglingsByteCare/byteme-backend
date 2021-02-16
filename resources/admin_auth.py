@@ -76,7 +76,7 @@ class LoginAdminApi(Resource):
             access_token = create_access_token(identity=str(user.id), expires_delta=expires)
 
             headers = {
-                **response.headers,
+                **request.headers,
                 'Access-Control-Allow-Origin': '*',
                 'token': access_token
             }
