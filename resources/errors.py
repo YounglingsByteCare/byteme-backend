@@ -1,33 +1,33 @@
 from flask_restful import HTTPException
 
-class InternalServerError(Exception):
+class InternalServerError(HTTPException):
     pass
 
-class SchemaValidationError(Exception):
+class SchemaValidationError(HTTPException):
     pass
 
 class ItemAlreadyExistsError(HTTPException):
     pass
 
-class UpdatingItemError(Exception):
+class UpdatingItemError(HTTPException):
     pass
 
-class DeletingItemError(Exception):
+class DeletingItemError(HTTPException):
     pass
 
-class ItemNotExistsError(Exception):
+class ItemNotExistsError(HTTPException):
     pass
 
-class EmailAlreadyExistsError(Exception):
+class EmailAlreadyExistsError(HTTPException):
     pass
 
-class UnauthorizedError(Exception):
+class UnauthorizedError(HTTPException):
     pass
 
-class EmailDoesnotExistsError(Exception):
+class EmailDoesnotExistsError(HTTPException):
     pass
 
-class BadTokenError(Exception):
+class BadTokenError(HTTPException):
     pass
 
 errors = {
