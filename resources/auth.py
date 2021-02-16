@@ -27,7 +27,7 @@ class SignupApi(Resource):
                               text_body=render_template('auth/login_email.txt',
                                                          url=url + access_token),
                               html_body=render_template('auth/login_email.html',
-                                                        url=url + access_token))
+                                                         url=url + access_token))
         except FieldDoesNotExist:
             raise SchemaValidationError
         except NotUniqueError:
@@ -47,7 +47,10 @@ class Confirm_Email(Resource):
             if not access_token or not password:
                 raise SchemaValidationError
 
-            #user_id = decode_token(reset_token)['identity']
+            user_id = decode_token(reset_token)['identity']
+            user = User.objects.get(id=user_id)
+            user.update(verified=True)
+            user.save()
 
             return {'message':'The email is verified!'}
         except (UnauthorizedError, DoesNotExist):
