@@ -63,7 +63,7 @@ class User(db.Document):
     password = db.StringField(required=True, min_length=6)
     patients = db.ListField(db.ReferenceField('Patient', reverse_delete_rule=db.PULL))
     appointments = db.ListField(db.ReferenceField('Appointment', reverse_delete_rule=db.PULL))
-
+    verified = db.BooleanField(default=False)
 
     def hash_password(self):
         self.password = generate_password_hash(self.password).decode('utf8')
